@@ -9,6 +9,7 @@ export const fetchContacts = createAsyncThunk(
     try {
       const response = await axios.get('/contacts');
       return response.data;
+    //   console.log(response.data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -37,4 +38,32 @@ export const deleteContact = createAsyncThunk(
       return thunkAPI.rejectWithValue(e.message);
     }
   }
+);
+export const toggleStatus = createAsyncThunk(
+    'contacts/toggleStatus',
+    async (contactId, thunkAPI) => {
+        // const todo = getState().todos.todos.find(todo => todo.id === id);
+
+        try {
+            const response = await axios.patch(`/contacts/${contactId}`);
+            return response.data;
+            //     method: 'PATCH',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({
+            //         completed: !todo.completed,
+            //     })
+            // });
+
+            // if (!response.ok) {
+            //     throw new Error('Can\'t toggle status. Server error.');
+            // }
+
+            // dispatch(toggleComplete({id}));
+
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.message);
+          }
+    }
 );
