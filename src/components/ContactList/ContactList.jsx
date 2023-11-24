@@ -13,11 +13,11 @@ export const ContactList = () => {
     ...contacts.filter(contact => contact.name.toLowerCase().includes(filter)),
   ];
 
-  console.log(visibleContacts);
+//   console.log(visibleContacts);
 
   return (
     <ContactsList>
-      {visibleContacts.map(({ name, phone, id }) => (
+      {visibleContacts.map(({ name, phone, id}) => (
         <ContactsListItem key={id} id={id} name={name} number={phone} />
       ))}
     </ContactsList>
