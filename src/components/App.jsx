@@ -1,51 +1,34 @@
-import { useState } from 'react';
-import { useGetContactsQuery, useAddContactMutation, useDeleteContactMutation } from '../redux';
-import ContactForm from './ContactForm/ContactForm'
-function App() {
-  
-  const [newContact, setNewContact] = useState('');
-  const {data = [], isLoading} = useGetContactsQuery();
-  const [addContact] = useAddContactMutation();
-  const [deleteContact] = useDeleteContactMutation();
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-  const handleAddContact = async (contact) => {
-    if(contact) {
-      setNewContact(contact)
-       await addContact(newContact).unwrap();
-     
-       setNewContact('');
-    }
-  }
+import { fetchContacts } from 'redux/operations';
+import { selectError, selectIsLoading } from 'redux/selectors';
 
-  const handleDeleteContact = async (id) => {
-    await deleteContact(id).unwrap();
-  }
+import { Section } from './Section/Section';
+import { ContactForm } from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
+import { ContactList } from './ContactList/ContactList';
 
-  if (isLoading) return <h1>Loading...</h1>
+export const App = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
-    <div>
-      {/* <div>
-        <input
-          type="text"
-          value={newContact}
-          onChange={(e) => setNewContact(e.target.value)}
-        />
-        <button onClick={handleAddContact}>Add contact</button>
-      </div> */}
-       <ContactForm onSubmit={handleAddContact} />
-      <div>
-       
-      </div>
-      <ul>
-        {data.map(item => (
-          <li key={item.id} onClick={() => handleDeleteContact(item.id)}>
-            {item.name} {item.phone}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+    <>
+      <Section title="Phonebook">
+        <ContactForm />
+      </Section>
 
-export default App;
+      <Section title="Contacts">
+        <Filter />
+        {isLoading && !error && <b>Request in progress</b>}
+        <ContactList />
+      </Section>
+    </>
+  );
+};
