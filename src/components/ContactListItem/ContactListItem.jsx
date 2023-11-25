@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+ import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
 
@@ -33,8 +33,8 @@ export const ContactsListItem = ( contact ) => {
   );
 };
 
-// ContactsListItem.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   number: PropTypes.string.isRequired,
-// };
+ ContactsListItem.propTypes = {
+  id: PropTypes.string.isRequired,
+   name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+ };

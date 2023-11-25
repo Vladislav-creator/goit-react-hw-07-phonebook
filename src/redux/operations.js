@@ -41,7 +41,7 @@ export const deleteContact = createAsyncThunk(
 );
 export const toggleStatus = createAsyncThunk(
     'contacts/toggleStatus',
-    async (contact, thunkAPI) => {
+    async ( contact,  thunkAPI) => {
        
 
         try {

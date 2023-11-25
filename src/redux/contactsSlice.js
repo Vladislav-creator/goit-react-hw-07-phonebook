@@ -51,10 +51,8 @@ const contactsSlice = createSlice({
         const index = state.items.findIndex(
           task => task.id === action.payload.id
         );
-         state.items[index].isFavourite = !state.items[index].isFavourite;
-        // const contactToggle = state.items.find(contact => contact.id === action.payload.id);
-        
-        // contactToggle.isFavourite = !contactToggle.isFavourite
+        state.items.splice(index, 1, action.payload);
+       
          
       },
       [toggleStatus.rejected]: handleRejected,
