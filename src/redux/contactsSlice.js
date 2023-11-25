@@ -48,12 +48,13 @@ const contactsSlice = createSlice({
     [toggleStatus.fulfilled](state, action) {
         state.isLoading = false;
         state.error = null;
-        // const index = state.items.findIndex(
-        //   task => task.id === action.payload.id
-        // );
-        //  state.items[index].isFavourite = !state.items[index].isFavourite;
-        const contactToggle = state.items.find(contact => contact.id === action.payload.id);
-        contactToggle.isFavourite = !contactToggle.isFavourite
+        const index = state.items.findIndex(
+          task => task.id === action.payload.id
+        );
+         state.items[index].isFavourite = !state.items[index].isFavourite;
+        // const contactToggle = state.items.find(contact => contact.id === action.payload.id);
+        
+        // contactToggle.isFavourite = !contactToggle.isFavourite
          
       },
       [toggleStatus.rejected]: handleRejected,

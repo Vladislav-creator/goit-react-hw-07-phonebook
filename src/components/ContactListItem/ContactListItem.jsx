@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
 
@@ -11,30 +11,30 @@ import {
   Button,
 } from './ContactListItem.module';
 
-export const ContactsListItem = ({ id, name, number, isFavourite }) => {
+export const ContactsListItem = ( contact ) => {
   const dispatch = useDispatch();
 
   const handleDeleteContact = userId => {
     dispatch(deleteContact(userId));
   };
-
+  // console.log(contact.name);
   return (
-    <ContactItem key={id}>
+    <ContactItem key={contact.id}>
         <input
         type='checkbox'
-        checked={isFavourite}
-        onChange={() => dispatch(toggleStatus(id))}
+        checked={contact.isFavourite}
+        onChange={() => dispatch(toggleStatus(contact.id))}
       />
       <ContactName>
-        {name}:<ContactNumber>{number}</ContactNumber>
+        {contact.name}:<ContactNumber>{contact.number}</ContactNumber>
       </ContactName>
-      <Button onClick={() => handleDeleteContact(id)}>Delete</Button>
+      <Button onClick={() => handleDeleteContact(contact.id)}>Delete</Button>
     </ContactItem>
   );
 };
 
-ContactsListItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-};
+// ContactsListItem.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   number: PropTypes.string.isRequired,
+// };

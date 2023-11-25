@@ -41,11 +41,13 @@ export const deleteContact = createAsyncThunk(
 );
 export const toggleStatus = createAsyncThunk(
     'contacts/toggleStatus',
-    async (contactId, thunkAPI) => {
+    async (contact, thunkAPI) => {
        
 
         try {
-            const response = await axios.patch(`/contacts/${contactId}`);
+            const response = await axios.patch(`/contacts/${contact.id}`, {
+              isFavourite: !contact.isFavourite,
+              });
             return response.data;
            
 
