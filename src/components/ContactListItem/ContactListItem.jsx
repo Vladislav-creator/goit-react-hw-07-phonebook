@@ -17,13 +17,13 @@ export const ContactsListItem = ( contact ) => {
   const handleDeleteContact = userId => {
     dispatch(deleteContact(userId));
   };
-  // console.log(contact.name);
+  const handleToggle = () => dispatch(toggleStatus(contact));
   return (
     <ContactItem key={contact.id}>
         <input
         type='checkbox'
         checked={contact.isFavourite}
-        onChange={() => dispatch(toggleStatus(contact.id))}
+        onChange={handleToggle}
       />
       <ContactName>
         {contact.name}:<ContactNumber>{contact.number}</ContactNumber>

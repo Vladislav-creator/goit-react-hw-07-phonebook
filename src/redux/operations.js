@@ -47,6 +47,7 @@ export const toggleStatus = createAsyncThunk(
         try {
             const response = await axios.patch(`/contacts/${contact.id}`, {
               isFavourite: !contact.isFavourite,
+             
               });
             return response.data;
            
