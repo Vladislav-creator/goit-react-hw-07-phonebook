@@ -42,18 +42,15 @@ export const deleteContact = createAsyncThunk(
 export const toggleStatus = createAsyncThunk(
     'contacts/toggleStatus',
     async ( contact,  thunkAPI) => {
-       
-
         try {
-            const response = await axios.patch(`/contacts/${contact.id}`, {
+            const response = await axios.put(`/contacts/${contact.id}`, {
               isFavourite: !contact.isFavourite,
              
               });
-            return response.data;
-           
-
+            return response.data; 
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
           }
     }
 );
+
