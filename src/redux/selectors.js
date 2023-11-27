@@ -16,13 +16,4 @@ export const selectVisibleContacts = createSelector(
     }
     )
 
-    // export const getVisibleContacts = createSelector(
-    //     [getContacts, getFilter],
-    //     (contacts, filter) => {
-    //       const normalizedFilter = filter.toLowerCase();
-      
-    //       return contacts.filter(({ name }) =>
-    //         name.toLowerCase().includes(normalizedFilter),
-    //       );
-    //     },
-    //   );
+    
